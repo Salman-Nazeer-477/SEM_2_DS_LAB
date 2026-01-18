@@ -22,7 +22,6 @@ int main()
         arr[i] = arr[i_min];
         arr[i_min] = temp;
     }
-    
     printf("Sorted Array:\n");
     for(int i = 0; i < size; i++) printf("%d, ", arr[i]);
     printf("\n");
