@@ -2,7 +2,7 @@
 #define SIZE 10
 int main()
 {
-    int stack[size];
+    int stack[SIZE];
     int top = -1;
     int num;
     int choice;
