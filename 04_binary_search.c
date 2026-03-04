@@ -1,29 +1,17 @@
 #include<stdio.h>
-
 int main()
 {
-    int arr[100];
-    int size = 0;
+    int arr[100], size = 0;
     printf("Enter size of array:");
     scanf("%d", &size);
     printf("Enter array elements:");
-    for (int i = 0; i < size; i++)
-        scanf("%d", &arr[i]);
-    int high = size - 1;
-    int low = 0;
-    int mid = (high + low) / 2;
-    
-    int num;
+    for (int i = 0; i < size; i++) scanf("%d", &arr[i]);
+    int high = size - 1, low = 0, mid = (high + low) / 2, num;
     printf("Enter number to be searched:");
     scanf("%d", &num);
-
     while(arr[mid] != num){
-        if(arr[mid] < num){
-            low = mid + 1;
-        }
-        else{
-            high = mid - 1;
-        }
+        if(arr[mid] < num) low = mid + 1;
+        else high = mid - 1;
         mid = (high + low) / 2;
     }
     printf("%d found at index: %d\n", num, mid);
