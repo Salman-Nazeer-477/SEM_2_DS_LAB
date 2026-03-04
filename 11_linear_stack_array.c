@@ -1,8 +1,7 @@
 #include <stdio.h>
-
+#define SIZE 10
 int main()
 {
-    int size = 10;
     int stack[size];
     int top = -1;
     int num;
@@ -18,7 +17,7 @@ int main()
         switch (choice)
         {
         case 1:
-            if (top + 1 == size)
+            if (top + 1 == SIZE)
             {
                 printf("Stack Overflow!\n");
             }
@@ -42,7 +41,9 @@ int main()
             }
             break;
         case 3:
-            for(int i = top; i > -1; i--){
+            printf("Stack:\n");
+            for (int i = top; i > -1; i--)
+            {
                 printf("%d ", stack[i]);
             }
             printf("\n");
