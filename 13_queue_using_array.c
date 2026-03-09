@@ -20,7 +20,6 @@ int main(){
         else if(choice == 2)
             dequeue();
         else if(choice == 3){
-            printf("Queue:");
             display();
         }
     } while (choice != 0);
@@ -31,18 +30,20 @@ void enqueue(int num){
         printf("Queue full!");
         return;
     }
-    if(front == -1) front = 0;
-    rear = rear + 1;
+    if(front == -1) front = rear = 0;
     queue[rear] = num;
+    rear = rear + 1;
 }
 
 int dequeue(){
-    if(front > rear || front == -1){
+    if(front == -1){
         printf("Queue is empty!");
         return 1;
     }
     printf("Removed %d\n", queue[front]);
     front++;
+    if(front == rear) front = rear = -1;
+    
 }
 
 void display(){
@@ -50,6 +51,7 @@ void display(){
         printf("Queue is empty");
         return;
     }
-    for(int i = front; i <= rear; i++) printf("%d ", queue[i]);
+    printf("Queue: ");
+    for(int i = front; i < rear; i++) printf("%d ", queue[i]);
     printf("\n");
 }
