@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 struct Node
 {
     int data;
     struct Node *next;
 };
-
 struct Node *createNode(int data)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -14,53 +12,12 @@ struct Node *createNode(int data)
     newNode->next = NULL;
     return newNode;
 }
-
 void insertAtFirst(struct Node **head, int data)
 {
     struct Node *newNode = createNode(data);
     newNode->next = *head;
     *head = newNode;
 }
-
-void insertAtEnd(struct Node **head, int data)
-{
-    struct Node *newNode = createNode(data);
-    if (*head == NULL)
-    {
-        *head = newNode;
-        return;
-    }
-    struct Node *temp = *head;
-    while (temp->next != NULL)
-    {
-        temp = temp->next;
-    }
-    temp->next = newNode;
-}
-
-void insertAtPosition(struct Node **head, int data, int position)
-{
-    struct Node *newNode = createNode(data);
-    if (position == 0)
-    {
-        insertAtFirst(head, data);
-        return;
-    }
-    struct Node *temp = *head;
-    for (int i = 0; temp != NULL && i < position - 1; i++)
-    {
-        temp = temp->next;
-    }
-    if (temp == NULL)
-    {
-        printf("Position out of range\n");
-        free(newNode);
-        return;
-    }
-    newNode->next = temp->next;
-    temp->next = newNode;
-}
-
 void deleteFromFirst(struct Node **head)
 {
     if (*head == NULL)
@@ -72,7 +29,6 @@ void deleteFromFirst(struct Node **head)
     *head = temp->next;
     free(temp);
 }
-
 void deleteFromEnd(struct Node **head)
 {
     if (*head == NULL)
@@ -94,7 +50,6 @@ void deleteFromEnd(struct Node **head)
     free(temp->next);
     temp->next = NULL;
 }
-
 void deleteAtPosition(struct Node **head, int position)
 {
     if (*head == NULL)
@@ -121,7 +76,6 @@ void deleteAtPosition(struct Node **head, int position)
     free(temp->next);
     temp->next = next;
 }
-
 void print(struct Node *head)
 {
     struct Node *temp = head;
@@ -132,15 +86,14 @@ void print(struct Node *head)
     }
     printf("NULL\n");
 }
-
 int main()
 {
     struct Node *head = NULL;
-    struct Node *temp = NULL;
-    head->next = createNode(10);
-    temp = head;
-    temp = temp->next;
-    temp->next = createNode(33);
+    insertAtFirst(&head, 1);
+    insertAtFirst(&head, 2);
+    insertAtFirst(&head, 3);
+    insertAtFirst(&head, 4);
+    insertAtFirst(&head, 5);
     int choice;
     do
     {
