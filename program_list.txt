@@ -1,0 +1,8 @@
+11. Write a program to implement linear stack using array.
+12. Write a program to implement postfix evaluation.
+13. Write a program to implement queue using array.
+14. Write a program to insert an element in singly linked list.
+15. Write a program to delete an element in singly linked list.
+16. Write a program to implement doubly linked list.
+17. Write a program to implement circular linked list.
+18. Write a program to implement binary search tree.
