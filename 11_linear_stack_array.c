@@ -1,13 +1,12 @@
 #include <stdio.h>
-#define SIZE 10
 int main(){
-    int stack[SIZE], top = -1, num, choice;
+    int stack[10], top = -1, num, choice;
     do{
         printf("\n");
         printf("1. Push\n2. Pop\n3. Display\n0. Exit\n");
         scanf("%d", &choice);
         if(choice == 1){
-            if (top + 1 == SIZE) printf("Stack Overflow!\n");
+            if (top + 1 == 10) printf("Stack Overflow!\n");
             else{
                 printf("Enter number to be pushed:");
                 scanf("%d", &num);
