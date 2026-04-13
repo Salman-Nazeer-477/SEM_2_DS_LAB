@@ -1,8 +1,6 @@
 #include<stdio.h>
 #define SIZE 10
-int queue[SIZE];
-int front = -1;
-int rear = -1;
+int queue[SIZE], front = -1, rear = -1;
 void display();
 void enqueue(int);
 int dequeue();
@@ -17,13 +15,9 @@ int main(){
             scanf("%d", &num);
             enqueue(num);
         }
-        else if(choice == 2)
-            dequeue();
-        else if(choice == 3){
-            display();
-        }
+        else if(choice == 2) dequeue();
+        else if(choice == 3)display();
     } while (choice != 0);
-    
 }
 void enqueue(int num){
     if(rear == SIZE - 1){
@@ -31,10 +25,8 @@ void enqueue(int num){
         return;
     }
     if(front == -1) front = rear = 0;
-    queue[rear] = num;
-    rear = rear + 1;
+    queue[rear++] = num;
 }
-
 int dequeue(){
     if(front == -1){
         printf("Queue is empty!");
@@ -43,9 +35,7 @@ int dequeue(){
     printf("Removed %d\n", queue[front]);
     front++;
     if(front == rear) front = rear = -1;
-    
 }
-
 void display(){
     if(front > rear || front == -1){
         printf("Queue is empty");
