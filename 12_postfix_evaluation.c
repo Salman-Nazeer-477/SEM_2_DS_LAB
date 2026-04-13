@@ -2,59 +2,40 @@
 #include <stdlib.h>
 #include <ctype.h>
 #define MAX 100
-int stack[MAX];
-int top = -1;
-void push(int value) {
-    if (top == MAX - 1) {
-        printf("Stack Overflow\n");
-        exit(1);
-    }
-    stack[++top] = value;
+int s[MAX], top = -1;
+void push(int v) {
+    if (top == MAX - 1) exit(1);
+    s[++top] = v;
 }
 int pop() {
-    if (top == -1) {
-        printf("Stack Underflow\n");
-        exit(1);
-    }
-    return stack[top--];
+    if (top == -1) exit(1);
+    return s[top--];
 }
-int evaluatePostfix(char *exp) {
-    int i = 0;
-    int op1, op2;
-    while (exp[i] != '\0') {
-        if (exp[i] == ' ' || exp[i] == '\n') {
+int eval(char *e) {
+    int i = 0, a, b;
+    while (e[i]) {
+        if (e[i] == ' ' || e[i] == '\n') { i++; continue; }
+
+        if (isdigit(e[i])) {
+            int n = 0;
+            while (isdigit(e[i]))
+                n = n * 10 + (e[i++] - '0');
+            push(n);
+        } else {
+            b = pop(); a = pop();
+            if (e[i] == '+') push(a + b);
+            else if (e[i] == '-') push(a - b);
+            else if (e[i] == '*') push(a * b);
+            else if (e[i] == '/') push(a / b);
+            else exit(1);
             i++;
-            continue;
         }
-        if (isdigit(exp[i])) {
-            int num = 0;
-            while (isdigit(exp[i])) {
-                num = num * 10 + (exp[i] - '0');
-                i++;
-            }
-            push(num);
-            continue;
-        }
-        op2 = pop();
-        op1 = pop();
-        switch (exp[i]) {
-            case '+': push(op1 + op2); break;
-            case '-': push(op1 - op2); break;
-            case '*': push(op1 * op2); break;
-            case '/': push(op1 / op2); break;
-            default:
-                printf("Invalid operator\n");
-                exit(1);
-        }
-        i++;
     }
     return pop();
 }
 int main() {
-    char exp[MAX];
-    printf("Enter postfix expression (use space between numbers): ");
-    fgets(exp, MAX, stdin);
-    int result = evaluatePostfix(exp);
-    printf("Result = %d\n", result);
+    char e[MAX];
+    fgets(e, MAX, stdin);
+    printf("Result = %d\n", eval(e));
     return 0;
 }
