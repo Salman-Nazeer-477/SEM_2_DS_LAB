@@ -5,7 +5,7 @@ typedef struct Node{
     struct Node *next;
 } node;
 node *createNode(int data){
-    struct Node *newNode = (node *)malloc(sizeof(node));
+    node *newNode = (node *)malloc(sizeof(node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
