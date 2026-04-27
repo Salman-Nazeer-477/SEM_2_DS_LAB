@@ -1,31 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct Node{
+typedef struct Node{
     int data;
     struct Node *next;
-};
-struct Node *createNode(int data){
-    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+} node;
+node *createNode(int data){
+    node *newNode = (node *)malloc(sizeof(node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
-void insert(struct Node **head, int data){
-    struct Node *newNode = createNode(data);
+void insert(node **head, int data){
+    node *newNode = createNode(data);
     newNode->next = *head;
     *head = newNode;
 }
-void deleteFromFirst(struct Node **head){
+void deleteFromFirst(node **head){
     if (*head == NULL){
         printf("List is empty\n");
         return;
     }
-    struct Node *temp = *head;
+    node *temp = *head;
     *head = temp->next;
     free(temp);
 }
-void print(struct Node *head){
-    struct Node *temp = head;
+void print(node *head){
+    node *temp = head;
     while (temp != NULL){
         printf("%d -> ", temp->data);
         temp = temp->next;
@@ -33,7 +33,7 @@ void print(struct Node *head){
     printf("NULL\n");
 }
 int main(){
-    struct Node *head = NULL;
+    node *head = NULL;
     insert(&head, 1);
     insert(&head, 2);
     insert(&head, 3);
